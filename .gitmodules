@@ -1,0 +1,9 @@
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = https://github.com/Colduck/nvim
+[submodule "tmux/.config/tmux"]
+	path = tmux/.config/tmux
+	url = https://github.com/Colduck/tmux
+[submodule "wezterm/.config/wezterm"]
+	path = wezterm/.config/wezterm
+	url = https://github.com/Colduck/wezterm
