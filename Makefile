@@ -1,5 +1,7 @@
 .PHONY: stow
 
+FOLDER_STOW := nvim/ tmux/ wezterm/
+
 stow:
-	stow -D nvim/ tmux/ wezterm/
-	stow nvim/ tmux/ wezterm/
+	stow -D $(FOLDER_STOW)
+	stow $(FOLDER_STOW)
