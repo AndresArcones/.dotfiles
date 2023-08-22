@@ -7,3 +7,6 @@
 [submodule "wezterm/.config/wezterm"]
 	path = wezterm/.config/wezterm
 	url = https://github.com/Colduck/wezterm
+[submodule "kitty/.config/kitty"]
+	path = kitty/.config/kitty
+	url = https://github.com/Colduck/kitty
