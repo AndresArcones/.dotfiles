@@ -1,6 +1,6 @@
 .PHONY: stow
 
-FOLDER_STOW := nvim/ tmux/ wezterm/ zsh/ bin/ kitty/
+FOLDER_STOW := nvim/ tmux/ wezterm/ zsh/ bin/ kitty/ i3/
 
 stow:
 	stow -D $(FOLDER_STOW)

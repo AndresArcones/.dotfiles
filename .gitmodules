@@ -10,3 +10,6 @@
 [submodule "kitty/.config/kitty"]
 	path = kitty/.config/kitty
 	url = https://github.com/Colduck/kitty
+[submodule "i3/.config/i3"]
+	path = i3/.config/i3
+	url = https://github.com/Colduck/i3
