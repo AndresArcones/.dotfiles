@@ -1,4 +1,10 @@
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^p "tmux-sessionizer\n"
+
+export PATH=~/.local/kitty.app/bin:$PATH
 export PATH=~/.local/scripts/:$PATH
 export PATH=~/.local/share/coursier/bin:$PATH
 export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
+
+export TERMINAL=kitty
+alias wezterm='flatpak run org.wezfurlong.wezterm'
+alias icat="kitty +kitten icat"
