@@ -1,15 +1,15 @@
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
-	url = https://github.com/Colduck/nvim
+	url = https://github.com/AndresArcones/nvim
 [submodule "tmux/.config/tmux"]
 	path = tmux/.config/tmux
-	url = https://github.com/Colduck/tmux
+	url = https://github.com/AndresArcones/tmux
 [submodule "wezterm/.config/wezterm"]
 	path = wezterm/.config/wezterm
-	url = https://github.com/Colduck/wezterm
+	url = https://github.com/AndresArcones/wezterm
 [submodule "kitty/.config/kitty"]
 	path = kitty/.config/kitty
-	url = https://github.com/Colduck/kitty
+	url = https://github.com/AndresArcones/kitty
 [submodule "i3/.config/i3"]
 	path = i3/.config/i3
-	url = https://github.com/Colduck/i3
+	url = https://github.com/AndresArcones/i3
