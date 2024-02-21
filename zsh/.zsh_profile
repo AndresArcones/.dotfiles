@@ -4,7 +4,10 @@ export PATH=~/.local/kitty.app/bin:$PATH
 export PATH=~/.local/scripts/:$PATH
 export PATH=~/.local/share/coursier/bin:$PATH
 export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
+export PATH=/opt/pulsesecure/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 
 export TERMINAL=kitty
 alias wezterm='flatpak run org.wezfurlong.wezterm'
+alias obsidian='flatpak run md.obsidian.Obsidian'
 alias icat="kitty +kitten icat"
