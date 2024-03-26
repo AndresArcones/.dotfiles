@@ -1,0 +1,24 @@
+" Set leader to space
+let mapleader ="\<Space>"
+
+" Set QuickJavaFix to leader ca
+nmap <leader>ca :action QuickJavaFix<CR>
+" Set show intention actions to leader ca
+nmap <Leader>ca :action ShowIntentionActions<CR>
+
+" Set goto file to leader ff
+nmap <leader>ff :action GotoFile<cr>
+
+" Set rename element to leader r
+:map <leader>r <Action>(RenameElement)
+
+" Set optimize imports to leader oi
+:map <leader>oi <Action>(OptimizeImports)
+
+nnoremap <leader><cr> :nohlsearch<cr>
+
+" Set clipboard to use system clipboard
+set clipboard^=unnamedplus
+
+" Define custom mapping to open the Switcher (Recent Files)
+nnoremap <leader>fs :action RecentFiles<CR>
