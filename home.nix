@@ -1,7 +1,6 @@
 { config, pkgs, user, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
   home.username = user;
   home.homeDirectory = "/home/" + user;
   home.stateVersion = "23.11";
@@ -80,6 +79,7 @@
       wezterm = "flatpak run org.wezfurlong.wezterm";
       obsidian = "flatpak run md.obsidian.Obsidian";
       icat = "kitty +kitten icat";
+      hm = "home-manager switch --flake ~/.dotfiles\?submodules=1#andres"
     };
     initExtra = ''
       # Keybindings
