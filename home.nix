@@ -72,7 +72,6 @@
   ###############
   programs.zsh = {
     enable = true;
-    loginShell = true;  # <-- this makes Zsh your login shell automatically
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
