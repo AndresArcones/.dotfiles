@@ -29,23 +29,17 @@ fi
 
 cd ~/.dotfiles
 
-# Install home-manager
-if ! command -v home-manager &> /dev/null; then
-    echo "Installing home-manager..."
-    nix profile add nixpkgs#home-manager
-fi
-
 # Switch to the new configuration
 echo "Applying configuration..."
-if home-manager switch --flake '.?submodules=1#andres'; then
+if nix run nixpkgs#home-manager switch --flake '.?submodules=1#andres'; then
     echo "Switch successful"
 else
     echo "Switch failed, removing conflicting git and retrying..."
     nix profile remove git
-    home-manager switch --flake '.?submodules=1#andres'
+    nix run nixpkgs#home-manager switch --flake '.?submodules=1#andres'
 fi
 
-# Remove the temporary git install, home-manager's git remains
+# Remove the temporary git install
 nix profile remove git
 
 echo "Setup complete! Enjoy your new Nix-managed environment."
