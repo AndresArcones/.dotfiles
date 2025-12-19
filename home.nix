@@ -120,4 +120,7 @@
   # Enable services if needed
   # For dunst, might need systemd user service, but home-manager handles it
 
+  # Enable i3 window manager session
+  xsession.windowManager.i3.enable = true;
+
 }
