@@ -163,13 +163,4 @@
 
   # dunst, xss-lock, etc. are started from i3 config, no need to manage them here
 
-  ###############
-  # ACTIVATION
-  ###############
-  home.activation.linkHomeManagerConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    mkdir -p ${config.home.homeDirectory}/.config/home-manager
-    ln -sf ${config.home.homeDirectory}/.dotfiles/home.nix ${config.home.homeDirectory}/.config/home-manager/home.nix
-    ln -sf ${config.home.homeDirectory}/.dotfiles/flake.nix ${config.home.homeDirectory}/.config/home-manager/flake.nix
-    ln -sf ${config.home.homeDirectory}/.dotfiles/flake.lock ${config.home.homeDirectory}/.config/home-manager/flake.lock
-  '';
 }
