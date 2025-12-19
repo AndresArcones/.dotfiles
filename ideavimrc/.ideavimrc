@@ -22,3 +22,13 @@ set clipboard^=unnamedplus
 
 " Define custom mapping to open the Switcher (Recent Files)
 nnoremap <leader>fs :action RecentFiles<CR>
+
+" Easier window navigation (disabled)
+" nnoremap <C-h> :wincmd h<CR>
+" nnoremap <C-j> :wincmd j<CR>
+" nnoremap <C-k> :wincmd k<CR>
+" nnoremap <C-l> :wincmd l<CR>
+
+" move to windows (disabled)
+" nnoremap <C-h> :action ActivateProjectToolWindow<CR>
+" nnoremap <C-j> :action ActivateTerminalToolWindow<CR>
