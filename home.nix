@@ -22,6 +22,13 @@
     # Window manager
     i3
     dunst  # notification daemon
+    networkmanagerapplet  # nm-applet
+    flameshot  # screenshot tool
+    feh  # wallpaper setter
+    xss-lock  # screen locker
+    i3lock  # locker
+    bumblebee-status  # status bar
+    dex  # XDG autostart
 
     # Development tools
     git
@@ -122,5 +129,19 @@
 
   # Enable i3 window manager session
   xsession.windowManager.i3.enable = true;
+
+  # Enable dunst notification daemon
+  services.dunst.enable = true;
+
+  # Enable network manager applet
+  services.network-manager-applet.enable = true;
+
+  # Enable screen locker
+  services.screen-locker = {
+    enable = true;
+    lockCmd = "${pkgs.i3lock}/bin/i3lock";
+    xautolock.enable = false;
+    xss-lock.enable = true;
+  };
 
 }
