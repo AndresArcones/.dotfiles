@@ -130,6 +130,17 @@
   # Enable i3 window manager session
   xsession.windowManager.i3.enable = true;
 
+  # Create i3 desktop file for login manager
+  home.file.".local/share/xsessions/i3.desktop".text = ''
+    [Desktop Entry]
+    Name=i3
+    Comment=i3 window manager
+    Exec=${pkgs.i3}/bin/i3
+    TryExec=${pkgs.i3}/bin/i3
+    Type=Application
+    DesktopNames=i3
+  '';
+
 
 
 }
