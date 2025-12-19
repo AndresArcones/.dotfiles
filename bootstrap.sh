@@ -45,4 +45,7 @@ nix profile remove git
 # Copy i3 desktop entry to system-wide location
 sudo cp ~/.local/share/xsessions/i3-nix.desktop /usr/share/xsessions/
 
+# change shell to zsh. nix does not allow it....
+chsh -s $(which zsh)
+
 echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."
