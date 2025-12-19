@@ -124,6 +124,11 @@
     ".ideavimrc".source = ./ideavimrc/.ideavimrc;
     ".config/dunst".source = ./dunst/.config/dunst;
 
+    # Home Manager config
+    ".config/home-manager/home.nix".source = ./home.nix;
+    ".config/home-manager/flake.nix".source = ./flake.nix;
+    ".config/home-manager/flake.lock".source = ./flake.lock;
+
     # Scripts
     "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
     "bin/activity.sh".source = ./bin/activity.sh;
