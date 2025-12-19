@@ -143,18 +143,6 @@
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;  # use i3-gaps to support gaps
-
-      # Extra i3-related tools (optional)
-      extraPackages = with pkgs; [
-        dunst
-        networkmanagerapplet
-        flameshot
-        feh
-        xss-lock
-        i3lock
-        dex
-        bumblebee-status
-      ];
     };
   };
 
