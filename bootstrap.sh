@@ -1,5 +1,6 @@
 #!/bin/bash
-# Bootstrap script for Nix-based dotfiles on Ubuntu
+
+# Bootstrap script for Nix-based dotfiles
 # Usage: curl -fsSL <url> | bash
 
 set -e
@@ -15,8 +16,7 @@ fi
 
 # Enable flakes
 mkdir -p ~/.config/nix
-grep -q "experimental-features" ~/.config/nix/nix.conf || \
-    echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
 # Install git temporarily for cloning and flake operations
 nix profile add nixpkgs#git
@@ -32,28 +32,14 @@ cd ~/.dotfiles
 # Apply Home Manager configuration
 echo "Applying Home Manager configuration..."
 if nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'; then
-    echo "Home Manager switch successful"
+    echo "Switch successful"
 else
     echo "Switch failed, retrying after removing temporary git..."
     nix profile remove git
     nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'
 fi
 
-# Remove the temporary git install
+# Remove temporary git
 nix profile remove git
 
-# Ensure i3 shows up in GDM/LightDM login screen
-SESSION_FILE="/usr/share/xsessions/i3.desktop"
-if [ ! -f "$SESSION_FILE" ]; then
-    echo "Creating i3 desktop session for login screen..."
-    sudo tee "$SESSION_FILE" > /dev/null <<EOF
-[Desktop Entry]
-Name=i3
-Comment=Dynamic tiling window manager
-Exec=$HOME/.nix-profile/bin/i3
-Type=XSession
-TryExec=$HOME/.nix-profile/bin/i3
-EOF
-fi
-
-echo "Setup complete! You can now choose Ubuntu or i3 at the login screen."
+echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."

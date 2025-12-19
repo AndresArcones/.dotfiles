@@ -2,7 +2,7 @@
 
 {
   home.username = user;
-  home.homeDirectory = "/home/${user}";
+  home.homeDirectory = "/home/" + user;
   home.stateVersion = "23.11";
 
   programs.home-manager.enable = true;
@@ -52,6 +52,7 @@
     cmake
 
     # i3 dependencies / tools
+    dunst
     networkmanagerapplet
     flameshot
     feh
@@ -77,6 +78,7 @@
       icat = "kitty +kitten icat";
     };
     initExtra = ''
+      # Keybindings
       bindkey -s ^p "tmux-sessionizer\n"
 
       # SDKMAN
@@ -99,10 +101,13 @@
       eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     '';
     profileExtra = ''
+      # Additional PATH exports
       export PATH=~/.local/share/coursier/bin:$PATH
       export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
       export PATH=/opt/pulsesecure/bin:$PATH
       export PATH=$PATH:/usr/local/go/bin
+
+      # Terminal
       export TERMINAL=kitty
     '';
   };
@@ -132,19 +137,25 @@
   ###############
   # XSESSION / I3
   ###############
-  xsession.windowManager.i3 = {
+  xsession = {
     enable = true;
-    package = pkgs.i3-gaps;
 
-    extraPackages = with pkgs; [
-      networkmanagerapplet
-      flameshot
-      feh
-      xss-lock
-      i3lock
-      dex
-      bumblebee-status
-    ];
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;  # use i3-gaps to support gaps
+
+      # Extra i3-related tools (optional)
+      extraPackages = with pkgs; [
+        dunst
+        networkmanagerapplet
+        flameshot
+        feh
+        xss-lock
+        i3lock
+        dex
+        bumblebee-status
+      ];
+    };
   };
 
   ###############
@@ -152,8 +163,5 @@
   ###############
   services.network-manager-applet.enable = true;
 
-  services.xss-lock = {
-    enable = true;
-    lockerCommand = "i3lock -c 000000";
-  };
+  # dunst, xss-lock, etc. are started from i3 config, no need to manage them here
 }
