@@ -37,7 +37,13 @@ fi
 
 # Switch to the new configuration
 echo "Applying configuration..."
-home-manager switch --flake '.?submodules=1#andres'
+if home-manager switch --flake '.?submodules=1#andres'; then
+    echo "Switch successful"
+else
+    echo "Switch failed, removing conflicting git and retrying..."
+    nix profile remove git
+    home-manager switch --flake '.?submodules=1#andres'
+fi
 
 # Remove the temporary git install, home-manager's git remains
 nix profile remove git
