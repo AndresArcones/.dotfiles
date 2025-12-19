@@ -124,11 +124,6 @@
     ".ideavimrc".source = ./ideavimrc/.ideavimrc;
     ".config/dunst".source = ./dunst/.config/dunst;
 
-    # Home Manager config
-    ".config/home-manager/home.nix".source = ./home.nix;
-    ".config/home-manager/flake.nix".source = ./flake.nix;
-    ".config/home-manager/flake.lock".source = ./flake.lock;
-
     # Scripts
     "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
     "bin/activity.sh".source = ./bin/activity.sh;
@@ -167,4 +162,14 @@
   services.network-manager-applet.enable = true;
 
   # dunst, xss-lock, etc. are started from i3 config, no need to manage them here
+
+  ###############
+  # ACTIVATION
+  ###############
+  home.activation.linkHomeManagerConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    mkdir -p ${config.home.homeDirectory}/.config/home-manager
+    ln -sf ${config.home.homeDirectory}/.dotfiles/home.nix ${config.home.homeDirectory}/.config/home-manager/home.nix
+    ln -sf ${config.home.homeDirectory}/.dotfiles/flake.nix ${config.home.homeDirectory}/.config/home-manager/flake.nix
+    ln -sf ${config.home.homeDirectory}/.dotfiles/flake.lock ${config.home.homeDirectory}/.config/home-manager/flake.lock
+  '';
 }
