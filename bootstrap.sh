@@ -28,8 +28,6 @@ if [ ! -d ~/.dotfiles ]; then
 fi
 
 cd ~/.dotfiles
-git submodule update --init --recursive
-
 
 # Apply Home Manager configuration
 echo "Applying Home Manager configuration..."
@@ -38,7 +36,7 @@ if nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1
 else
     echo "Switch failed, retrying after removing temporary git..."
     nix profile remove git
-    nix run 'github:nix-community/home-manager' -- switch --flake 'andres'
+    nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'
 fi
 
 # Remove temporary git

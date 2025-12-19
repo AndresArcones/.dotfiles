@@ -76,7 +76,6 @@
       wezterm = "flatpak run org.wezfurlong.wezterm";
       obsidian = "flatpak run md.obsidian.Obsidian";
       icat = "kitty +kitten icat";
-      hm='nix run github:nix-community/home-manager -- switch --flake "$HOME/.dotfiles?submodules=1#andres"'
     };
     initExtra = ''
       # Keybindings
