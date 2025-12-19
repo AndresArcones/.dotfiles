@@ -51,7 +51,6 @@
     ripgrep
     fd
     bat
-    exa
     zoxide
    ];
 
