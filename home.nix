@@ -142,7 +142,7 @@
 
     windowManager.i3 = {
       enable = true;
-      package = pkgs.i3-gaps;  # use i3-gaps to support gaps
+      package = pkgs.i3;  # i3 with gaps support
     };
   };
 
