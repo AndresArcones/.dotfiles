@@ -29,9 +29,6 @@ fi
 
 cd ~/.dotfiles
 
-# Initialize submodules
-git submodule update --init --recursive
-
 # Install home-manager
 if ! command -v home-manager &> /dev/null; then
     echo "Installing home-manager..."
