@@ -18,16 +18,16 @@ fi
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
+# Install git temporarily for cloning and flake operations
+nix profile add nixpkgs#git
+
 # Clone dotfiles if not already cloned
 if [ ! -d ~/.dotfiles ]; then
     echo "Cloning dotfiles..."
-    nix run nixpkgs#git -- clone --recurse-submodules https://github.com/AndresArcones/.dotfiles ~/.dotfiles
+    git clone --recurse-submodules https://github.com/AndresArcones/.dotfiles ~/.dotfiles
 fi
 
 cd ~/.dotfiles
-
-# Ensure submodule paths are tracked by Git
-nix run nixpkgs#git add i3/.config/i3 kitty/.config/kitty nvim/.config/nvim tmux/.config/tmux wezterm/.config/wezterm
 
 # Install home-manager
 if ! command -v home-manager &> /dev/null; then
@@ -38,5 +38,8 @@ fi
 # Switch to the new configuration
 echo "Applying configuration..."
 home-manager switch --flake '.?submodules=1#andres'
+
+# Remove the temporary git install, home-manager's git remains
+nix profile remove git
 
 echo "Setup complete! Enjoy your new Nix-managed environment."
