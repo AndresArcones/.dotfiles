@@ -10,9 +10,9 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: {
-    homeConfigurations."default" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."andres" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = { user = builtins.getEnv "USER"; };
+      extraSpecialArgs = { user = "andres"; };
       modules = [ ./home.nix ];
     };
   };

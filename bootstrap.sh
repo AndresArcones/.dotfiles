@@ -37,6 +37,6 @@ fi
 
 # Switch to the new configuration
 echo "Applying configuration..."
-home-manager switch --flake .#default
+home-manager switch --flake .#andres
 
 echo "Setup complete! Enjoy your new Nix-managed environment."
