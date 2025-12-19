@@ -24,10 +24,13 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 # Clone dotfiles if not already cloned
 if [ ! -d ~/.dotfiles ]; then
     echo "Cloning dotfiles..."
-    git clone https://github.com/AndresArcones/.dotfiles ~/.dotfiles
+    git clone --recursive https://github.com/AndresArcones/.dotfiles ~/.dotfiles
 fi
 
 cd ~/.dotfiles
+
+# Initialize submodules
+git submodule update --init --recursive
 
 # Install home-manager
 if ! command -v home-manager &> /dev/null; then
