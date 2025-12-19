@@ -12,9 +12,6 @@ if ! command -v nix &> /dev/null; then
     echo "Installing Nix..."
     wget -qO - https://nixos.org/nix/install | sh
     . ~/.nix-profile/etc/profile.d/nix.sh
-    if ! command -v git &> /dev/null; then
-        nix profile add nixpkgs#git
-    fi
 fi
 
 # Enable flakes
@@ -24,7 +21,7 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 # Clone dotfiles if not already cloned
 if [ ! -d ~/.dotfiles ]; then
     echo "Cloning dotfiles..."
-    git clone --recurse-submodules https://github.com/AndresArcones/.dotfiles ~/.dotfiles
+    nix run nixpkgs#git -- clone --recurse-submodules https://github.com/AndresArcones/.dotfiles ~/.dotfiles
 fi
 
 cd ~/.dotfiles
@@ -37,9 +34,6 @@ if ! command -v home-manager &> /dev/null; then
     echo "Installing home-manager..."
     nix profile add nixpkgs#home-manager
 fi
-
-# Remove the temporary git install to avoid conflict with home-manager
-nix profile remove git
 
 # Switch to the new configuration
 echo "Applying configuration..."
