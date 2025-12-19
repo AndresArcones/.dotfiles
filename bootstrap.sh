@@ -31,8 +31,13 @@ cd ~/.dotfiles
 
 # Switch to the new configuration
 echo "Applying configuration..."
-nix profile remove git
-nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'
+if nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'; then
+    echo "Switch successful"
+else
+    echo "Switch failed, removing conflicting git and retrying..."
+    nix profile remove git
+    nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'
+fi
 
 # Remove the temporary git install
 nix profile remove git
