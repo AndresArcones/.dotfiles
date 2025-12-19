@@ -13,7 +13,7 @@ if ! command -v nix &> /dev/null; then
     wget -qO - https://nixos.org/nix/install | sh
     . ~/.nix-profile/etc/profile.d/nix.sh
     if ! command -v git &> /dev/null; then
-        nix profile install nixpkgs#git
+        nix profile add nixpkgs#git
     fi
 fi
 
@@ -32,7 +32,7 @@ cd ~/.dotfiles
 # Install home-manager
 if ! command -v home-manager &> /dev/null; then
     echo "Installing home-manager..."
-    nix profile install nixpkgs#home-manager
+    nix profile add nixpkgs#home-manager
 fi
 
 # Switch to the new configuration
