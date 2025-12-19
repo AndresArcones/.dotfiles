@@ -2,7 +2,7 @@
 
 {
   home.username = user;
-  home.homeDirectory = "/home/" + user;
+  home.homeDirectory = "/home/${user}";
   home.stateVersion = "23.11";
 
   programs.home-manager.enable = true;
@@ -50,6 +50,15 @@
     gcc
     gnumake
     cmake
+
+    # i3 dependencies / tools
+    networkmanagerapplet
+    flameshot
+    feh
+    xss-lock
+    i3lock
+    dex
+    bumblebee-status
   ];
 
   ###############
@@ -68,7 +77,6 @@
       icat = "kitty +kitten icat";
     };
     initExtra = ''
-      # Keybindings
       bindkey -s ^p "tmux-sessionizer\n"
 
       # SDKMAN
@@ -91,13 +99,10 @@
       eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     '';
     profileExtra = ''
-      # Additional PATH exports
       export PATH=~/.local/share/coursier/bin:$PATH
       export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
       export PATH=/opt/pulsesecure/bin:$PATH
       export PATH=$PATH:/usr/local/go/bin
-
-      # Terminal
       export TERMINAL=kitty
     '';
   };
@@ -118,7 +123,7 @@
     "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
     "bin/activity.sh".source = ./bin/activity.sh;
 
-    # X11 start
+    # X11 start (if using startx)
     ".xinitrc".text = ''
       exec i3
     '';
@@ -127,39 +132,28 @@
   ###############
   # XSESSION / I3
   ###############
-  xsession = {
+  xsession.windowManager.i3 = {
     enable = true;
+    package = pkgs.i3-gaps;
 
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3;
-
-      extraPackages = with pkgs; [
-        dunst
-        networkmanagerapplet
-        flameshot
-        feh
-        xss-lock
-        i3lock
-        dex
-        bumblebee-status
-      ];
-    };
+    extraPackages = with pkgs; [
+      networkmanagerapplet
+      flameshot
+      feh
+      xss-lock
+      i3lock
+      dex
+      bumblebee-status
+    ];
   };
 
   ###############
   # USER SERVICES
   ###############
-  services = {
-    dunst.enable = true;
+  services.network-manager-applet.enable = true;
 
-    network-manager-applet.enable = true;
-
-    xss-lock = {
-      enable = true;
-      lockerCommand = "i3lock -c 000000";
-    };
-
-    dex.enable = true; # XDG autostart
+  services.xss-lock = {
+    enable = true;
+    lockerCommand = "i3lock -c 000000";
   };
 }
