@@ -18,6 +18,9 @@
     kitty
     wezterm
 
+    # Applications
+    microsoft-edge
+
     # Editor
     neovim
 
