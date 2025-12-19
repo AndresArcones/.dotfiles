@@ -7,7 +7,9 @@
 
   programs.home-manager.enable = true;
 
-  # Install packages
+  ###############
+  # PACKAGES
+  ###############
   home.packages = with pkgs; [
     # Shell and terminal
     zsh
@@ -19,16 +21,13 @@
     # Editor
     neovim
 
-    # Window manager
-    i3
-    dunst  # notification daemon
-    networkmanagerapplet  # nm-applet
-    flameshot  # screenshot tool
-    feh  # wallpaper setter
-    xss-lock  # screen locker
-    i3lock  # locker
-    bumblebee-status  # status bar
-    dex  # XDG autostart
+    # Utilities
+    stow
+    fzf
+    ripgrep
+    fd
+    bat
+    zoxide
 
     # Development tools
     git
@@ -51,96 +50,116 @@
     gcc
     gnumake
     cmake
+  ];
 
-    # Utilities
-    stow  # for compatibility
-    fzf
-    ripgrep
-    fd
-    bat
-    zoxide
-   ];
+  ###############
+  # ZSH
+  ###############
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = [ "git" ];
+    };
+    shellAliases = {
+      wezterm = "flatpak run org.wezfurlong.wezterm";
+      obsidian = "flatpak run md.obsidian.Obsidian";
+      icat = "kitty +kitten icat";
+    };
+    initExtra = ''
+      # Keybindings
+      bindkey -s ^p "tmux-sessionizer\n"
 
-   # Enable oh-my-zsh
-   programs.zsh = {
-     enable = true;
-     oh-my-zsh = {
-       enable = true;
-       theme = "robbyrussell";
-       plugins = [ "git" ];
-     };
-     shellAliases = {
-       wezterm = "flatpak run org.wezfurlong.wezterm";
-       obsidian = "flatpak run md.obsidian.Obsidian";
-       icat = "kitty +kitten icat";
-     };
-     initExtra = ''
-       # Keybindings
-       bindkey -s ^p "tmux-sessionizer\n"
+      # SDKMAN
+      export SDKMAN_DIR="$HOME/.sdkman"
+      [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-       # SDKMAN
-       export SDKMAN_DIR="$HOME/.sdkman"
-       [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+      # NVM
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-       # NVM
-       export NVM_DIR="$HOME/.nvm"
-       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-       [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+      # Custom functions
+      clean_scala_deps() {
+        echo "Removing Scala and SBT caches..."
+        rm -rf ~/.m2 ~/.ivy2 ~/.cache/coursier ~/.sbt/1.0/plugins/target
+        echo "Cleanup complete!"
+      }
 
-       # Custom functions
-       clean_scala_deps() {
-         echo "Removing Scala and SBT caches..."
-         rm -rf ~/.m2 ~/.ivy2 ~/.cache/coursier ~/.sbt/1.0/plugins/target
-         echo "Cleanup complete!"
-       }
+      # Brew shellenv
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    '';
+    profileExtra = ''
+      # Additional PATH exports
+      export PATH=~/.local/share/coursier/bin:$PATH
+      export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
+      export PATH=/opt/pulsesecure/bin:$PATH
+      export PATH=$PATH:/usr/local/go/bin
 
-       # Brew shellenv
-       eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-     '';
-      profileExtra = ''
-        # Additional PATH exports
-        export PATH=~/.local/share/coursier/bin:$PATH
-        export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
-        export PATH=/opt/pulsesecure/bin:$PATH
-        export PATH=$PATH:/usr/local/go/bin
+      # Terminal
+      export TERMINAL=kitty
+    '';
+  };
 
-        # Terminal
-        export TERMINAL=kitty
-       '';
-   };
+  ###############
+  # DOTFILES / CONFIG
+  ###############
+  home.file = {
+    ".config/nvim".source = ./nvim/.config/nvim;
+    ".config/tmux".source = ./tmux/.config/tmux;
+    ".config/kitty".source = ./kitty/.config/kitty;
+    ".config/wezterm".source = ./wezterm/.config/wezterm;
+    ".config/i3".source = ./i3/.config/i3;
+    ".ideavimrc".source = ./ideavimrc/.ideavimrc;
+    ".config/dunst".source = ./dunst/.config/dunst;
 
-   # Symlink dotfiles
-   home.file = {
-     ".config/nvim".source = ./nvim/.config/nvim;
-     ".config/tmux".source = ./tmux/.config/tmux;
-     ".config/kitty".source = ./kitty/.config/kitty;
-     ".config/wezterm".source = ./wezterm/.config/wezterm;
-     ".config/i3".source = ./i3/.config/i3;
-     ".ideavimrc".source = ./ideavimrc/.ideavimrc;
-     ".config/dunst".source = ./dunst/.config/dunst;
-   };
+    # Scripts
+    "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
+    "bin/activity.sh".source = ./bin/activity.sh;
 
-  # Symlink scripts
-  home.file."bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
-  home.file."bin/activity.sh".source = ./bin/activity.sh;
+    # X11 start
+    ".xinitrc".text = ''
+      exec i3
+    '';
+  };
 
-  # Enable services if needed
-  # For dunst, might need systemd user service, but home-manager handles it
+  ###############
+  # XSESSION / I3
+  ###############
+  xsession = {
+    enable = true;
 
-  # Enable i3 window manager session
-  xsession.windowManager.i3.enable = true;
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3;
 
-  # Create i3 desktop file for login manager
-  home.file.".local/share/xsessions/i3.desktop".text = ''
-    [Desktop Entry]
-    Name=i3
-    Comment=i3 window manager
-    Exec=${pkgs.i3}/bin/i3
-    TryExec=${pkgs.i3}/bin/i3
-    Type=Application
-    DesktopNames=i3
-  '';
+      extraPackages = with pkgs; [
+        dunst
+        networkmanagerapplet
+        flameshot
+        feh
+        xss-lock
+        i3lock
+        dex
+        bumblebee-status
+      ];
+    };
+  };
 
+  ###############
+  # USER SERVICES
+  ###############
+  services = {
+    dunst.enable = true;
 
+    network-manager-applet.enable = true;
 
+    xss-lock = {
+      enable = true;
+      lockerCommand = "i3lock -c 000000";
+    };
+
+    dex.enable = true; # XDG autostart
+  };
 }
