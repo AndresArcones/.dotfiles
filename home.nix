@@ -132,6 +132,16 @@
     ".xinitrc".text = ''
       exec i3
     '';
+
+    # Desktop entry for i3 session
+    ".local/share/xsessions/i3-nix.desktop".text = ''
+      [Desktop Entry]
+      Name=i3 (Nix)
+      Comment=Lightweight tiling window manager from Nix
+      Exec=/home/${user}/.xsession
+      TryExec=/home/${user}/.xsession
+      Type=Application
+    '';
   };
 
   ###############
