@@ -29,6 +29,9 @@ fi
 
 cd ~/.dotfiles
 
+# Ensure submodule paths are tracked by Git
+git add i3/.config/i3 kitty/.config/kitty nvim/.config/nvim tmux/.config/tmux wezterm/.config/wezterm
+
 # Install home-manager
 if ! command -v home-manager &> /dev/null; then
     echo "Installing home-manager..."
