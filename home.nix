@@ -136,12 +136,10 @@
   # Enable network manager applet
   services.network-manager-applet.enable = true;
 
-  # Enable screen locker
-  services.screen-locker = {
+  # Enable xss-lock for screen locking
+  services.xss-lock = {
     enable = true;
-    lockCmd = "${pkgs.i3lock}/bin/i3lock";
-    xautolock.enable = false;
-    xss-lock.enable = true;
+    lockerCommand = "${pkgs.i3lock}/bin/i3lock";
   };
 
 }
