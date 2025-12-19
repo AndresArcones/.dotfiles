@@ -130,10 +130,6 @@
   # Enable i3 window manager session
   xsession.windowManager.i3.enable = true;
 
-  # Enable dunst notification daemon
-  programs.dunst.enable = true;
 
-  # Enable network manager applet
-  services.network-manager-applet.enable = true;
 
 }
