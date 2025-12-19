@@ -1,7 +1,6 @@
 { config, lib, pkgs, user, ... }:
 
 {
-
   users.defaultUserShell = pkgs.zsh;
   nixpkgs.config.allowUnfree = true;
 
@@ -9,6 +8,7 @@
   home.homeDirectory = "/home/" + user;
   home.stateVersion = "23.11";
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
+  home.loginShell = pkgs.zsh;   # sets Zsh as the login shell
 
 
   programs.home-manager.enable = true;
