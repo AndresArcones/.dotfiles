@@ -40,6 +40,6 @@ fi
 
 # Switch to the new configuration
 echo "Applying configuration..."
-home-manager switch --flake .#andres
+home-manager switch --flake '.?submodules=1#andres'
 
 echo "Setup complete! Enjoy your new Nix-managed environment."
