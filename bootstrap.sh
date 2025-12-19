@@ -12,6 +12,9 @@ if ! command -v nix &> /dev/null; then
     echo "Installing Nix..."
     wget -qO - https://nixos.org/nix/install | sh
     . ~/.nix-profile/etc/profile.d/nix.sh
+    if ! command -v git &> /dev/null; then
+        nix profile install nixpkgs#git
+    fi
 fi
 
 # Enable flakes
