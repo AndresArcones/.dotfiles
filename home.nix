@@ -147,6 +147,17 @@
   };
 
   ###############
+  # DISPLAY MANAGER
+  ###############
+  programs.xserver.enable = true;
+
+  programs.xserver.displayManager.lightdm = {
+    enable = true;
+    autoLogin.enable = true;         # optional, logs in automatically
+    autoLogin.user = user;
+  };
+
+  ###############
   # USER SERVICES
   ###############
   services.network-manager-applet.enable = true;

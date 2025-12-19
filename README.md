@@ -7,3 +7,6 @@ How to use
 if error remeber to run:
 
 shell```sudo rm -rf /nix ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.local/state/nix ~/.dotfiles```
+
+
+sudo rm -rf /nix ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.local/state/nix ~/.dotfiles && wget -qO https://raw.githubusercontent.com/AndresArcones/.dotfiles/refs/heads/main/bootstrap.sh | bash
