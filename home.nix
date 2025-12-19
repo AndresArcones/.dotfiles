@@ -1,14 +1,13 @@
 { config, lib, pkgs, user, ... }:
 
 {
-  users.defaultUserShell = pkgs.zsh;
-  nixpkgs.config.allowUnfree = true;
 
   home.username = user;
   home.homeDirectory = "/home/" + user;
   home.stateVersion = "23.11";
 
 
+  nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 
   ###############
