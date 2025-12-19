@@ -38,6 +38,9 @@ if ! command -v home-manager &> /dev/null; then
     nix profile add nixpkgs#home-manager
 fi
 
+# Remove the temporary git install to avoid conflict with home-manager
+nix profile remove git
+
 # Switch to the new configuration
 echo "Applying configuration..."
 home-manager switch --flake '.?submodules=1#andres'
