@@ -10,7 +10,7 @@ echo "Setting up Nix-based dotfiles..."
 # Install Nix if not present
 if ! command -v nix &> /dev/null; then
     echo "Installing Nix..."
-    curl -L https://nixos.org/nix/install | sh
+    wget -qO - https://nixos.org/nix/install | sh
     . ~/.nix-profile/etc/profile.d/nix.sh
 fi
 
