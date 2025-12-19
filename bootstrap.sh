@@ -46,6 +46,7 @@ nix profile remove git
 sudo cp ~/.local/share/xsessions/i3-nix.desktop /usr/share/xsessions/
 
 # change shell to zsh. nix does not allow it....
-chsh -s $(which zsh)
+echo "/home/andres/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
+echo "run manually chsh -s /home/andres/.nix-profile/bin/zsh"
 
 echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."
