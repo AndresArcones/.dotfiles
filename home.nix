@@ -28,6 +28,7 @@
     obsidian
     vscode
     dbeaver-bin
+    postman
 
     # Editor
     neovim
