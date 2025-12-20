@@ -66,6 +66,7 @@
     dex
     bumblebee-status
     dmenu
+    jetbrains-toolbox
 
     # NixGL
     nixgl.nixGLIntel
