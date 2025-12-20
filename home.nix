@@ -93,6 +93,7 @@
       wezterm = "flatpak run org.wezfurlong.wezterm";
       obsidian = "flatpak run md.obsidian.Obsidian";
       icat = "kitty +kitten icat";
+      kitty = "nixgl kitty";
       hm = "home-manager switch --flake ~/.dotfiles?submodules=1#andres";
       nixgl = "~/.local/bin/nixgl";
     };
