@@ -71,6 +71,7 @@
     bumblebee-status
     dmenu
     jetbrains-toolbox
+    python311Packages.psutil
 
     # NixGL
     nixgl.nixGLIntel # needed for kitty to run in nix
