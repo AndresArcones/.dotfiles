@@ -1,11 +1,10 @@
 { config, lib, pkgs, user, ... }:
 
-{
 
+{
   home.username = user;
   home.homeDirectory = "/home/" + user;
   home.stateVersion = "23.11";
-
 
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
@@ -66,7 +65,19 @@
     i3lock
     dex
     bumblebee-status
+
+    # NixGL
+    nixgl.auto.nixGLDefault
   ];
+
+  ###############
+  # Create global nixgl wrapper
+  ###############
+  home.file.".local/bin/nixgl".text = ''
+    #!/usr/bin/env bash
+    exec ${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL "$@"
+  '';
+  home.file.".local/bin/nixgl".executable = true;
 
   ###############
   # ZSH
@@ -82,7 +93,8 @@
       wezterm = "flatpak run org.wezfurlong.wezterm";
       obsidian = "flatpak run md.obsidian.Obsidian";
       icat = "kitty +kitten icat";
-      hm = "home-manager switch --flake ~/.dotfiles\?submodules=1#andres";
+      hm = "home-manager switch --flake ~/.dotfiles?submodules=1#andres";
+      nixgl = "~/.local/bin/nixgl";
     };
     initExtra = ''
       # Keybindings
@@ -103,18 +115,13 @@
         rm -rf ~/.m2 ~/.ivy2 ~/.cache/coursier ~/.sbt/1.0/plugins/target
         echo "Cleanup complete!"
       }
-
-      # Brew shellenv
-      # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     '';
     profileExtra = ''
-      # Additional PATH exports
       export PATH=~/.local/share/coursier/bin:$PATH
       export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
       export PATH=/opt/pulsesecure/bin:$PATH
       export PATH=$PATH:/usr/local/go/bin
 
-      # Terminal
       export TERMINAL=kitty
     '';
   };
@@ -159,7 +166,7 @@
 
     windowManager.i3 = {
       enable = true;
-      package = pkgs.i3;  # i3 with gaps support
+      package = pkgs.i3;
     };
   };
 
@@ -167,7 +174,5 @@
   # USER SERVICES
   ###############
   services.network-manager-applet.enable = true;
-
-  # dunst, xss-lock, etc. are started from i3 config, no need to manage them here
 
 }
