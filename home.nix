@@ -65,6 +65,7 @@
     i3lock
     dex
     bumblebee-status
+    dmenu
 
     # NixGL
     nixgl.nixGLIntel
