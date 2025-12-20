@@ -59,6 +59,7 @@
     gcc
     gnumake
     cmake
+    bazelisk
 
     # i3 dependencies / tools
     dunst
