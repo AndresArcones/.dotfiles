@@ -22,6 +22,7 @@
 
     # Applications
     microsoft-edge
+    teams-for-linux
 
     # Editor
     neovim
@@ -33,7 +34,6 @@
     fd
     bat
     zoxide
-    flatpak
 
     # Development tools
     git
@@ -100,7 +100,7 @@
     shellAliases = {
       wezterm = "flatpak run org.wezfurlong.wezterm";
       obsidian = "flatpak run md.obsidian.Obsidian";
-      teams = "flatpak run com.microsoft.Teams";
+      teams = "teams-for-linux";
       icat = "kit +kitten icat";
       kit = "nixgl kitty";
       hm = "home-manager switch --flake ~/.dotfiles?submodules=1#andres";
