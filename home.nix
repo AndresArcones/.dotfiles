@@ -22,7 +22,6 @@
 
     # Applications
     microsoft-edge
-    teams
 
     # Editor
     neovim
@@ -100,6 +99,7 @@
     shellAliases = {
       wezterm = "flatpak run org.wezfurlong.wezterm";
       obsidian = "flatpak run md.obsidian.Obsidian";
+      teams = "flatpak run com.microsoft.Teams";
       icat = "kit +kitten icat";
       kit = "nixgl kitty";
       hm = "home-manager switch --flake ~/.dotfiles?submodules=1#andres";
