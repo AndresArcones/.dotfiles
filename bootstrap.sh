@@ -5,6 +5,13 @@
 
 set -e
 
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+
 echo "Setting up Nix-based dotfiles..."
 
 # Install Nix if not present
@@ -47,6 +54,6 @@ sudo cp ~/.local/share/xsessions/i3-nix.desktop /usr/share/xsessions/
 
 # change shell to zsh. nix does not allow it....
 echo "/home/andres/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
-echo "run manually chsh -s /home/andres/.nix-profile/bin/zsh"
+echo -e "${YELLOW}⚠️  Run manually:${NC} ${GREEN}chsh -s /home/andres/.nix-profile/bin/zsh${NC}"
 
 echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."
