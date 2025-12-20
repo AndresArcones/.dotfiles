@@ -67,7 +67,7 @@
     bumblebee-status
 
     # NixGL
-    nixgl.auto.nixGLDefault
+    nixgl.nixGLIntel
   ];
 
   ###############
@@ -75,7 +75,7 @@
   ###############
   home.file.".local/bin/nixgl".text = ''
     #!/usr/bin/env bash
-    exec ${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL "$@"
+    exec ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel "$@"
   '';
   home.file.".local/bin/nixgl".executable = true;
 
