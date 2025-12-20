@@ -23,6 +23,9 @@
     # Applications
     microsoft-edge
     teams-for-linux
+    spotify
+    slack
+    obsidian
 
     # Editor
     neovim
@@ -70,7 +73,7 @@
     jetbrains-toolbox
 
     # NixGL
-    nixgl.nixGLIntel
+    nixgl.nixGLIntel # needed for kitty to run in nix
   ];
 
   ###############
