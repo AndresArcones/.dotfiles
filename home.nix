@@ -27,7 +27,7 @@
     slack
     obsidian
     vscode
-    dbeaver
+    dbeaver-bin
 
     # Editor
     neovim
@@ -114,7 +114,7 @@
       teams = "teams-for-linux";
       icat = "kit +kitten icat";
       kit = "nixgl kitty";
-      hm = "home-manager switch --flake ~/.dotfiles?submodules=1#andres";
+      hm = "home-manager switch --flake '.?submodules=1#andres'";
       nixgl = "~/.local/bin/nixgl";
     };
     initExtra = ''
