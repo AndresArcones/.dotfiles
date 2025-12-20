@@ -33,6 +33,7 @@
     fd
     bat
     zoxide
+    flatpak
 
     # Development tools
     git
