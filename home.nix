@@ -26,6 +26,8 @@
     spotify
     slack
     obsidian
+    vscode
+    dbeaver
 
     # Editor
     neovim
@@ -42,6 +44,8 @@
     git
     curl
     wget
+    terraform
+    docker
 
     # Languages and runtimes
     nodejs
@@ -60,6 +64,7 @@
     gnumake
     cmake
     bazelisk
+    sbt
 
     # i3 dependencies / tools
     dunst
@@ -73,6 +78,7 @@
     dmenu
     jetbrains-toolbox
     python311Packages.psutil
+    xclip
 
     # NixGL
     nixgl.nixGLIntel # needed for kitty to run in nix
