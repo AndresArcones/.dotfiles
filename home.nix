@@ -22,6 +22,7 @@
 
     # Applications
     microsoft-edge
+    teams
 
     # Editor
     neovim
