@@ -72,13 +72,18 @@
   ];
 
   ###############
-  # Create global nixgl wrapper
+  # Create global wrappers
   ###############
   home.file.".local/bin/nixgl".text = ''
     #!/usr/bin/env bash
     exec ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel "$@"
   '';
   home.file.".local/bin/nixgl".executable = true;
+  home.file.".local/bin/kit".text = ''
+    #!/usr/bin/env bash
+    exec ~/.local/bin/nixgl kitty "$@"
+  '';
+  home.file.".local/bin/kit".executable = true;
 
   ###############
   # ZSH
