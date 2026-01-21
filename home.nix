@@ -145,6 +145,7 @@
       export PATH=$PATH:/usr/local/go/bin
 
       export TERMINAL=kitty
+      export GIT_EDITOR="nvim"
     '';
   };
 
