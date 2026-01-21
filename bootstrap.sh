@@ -38,12 +38,12 @@ cd ~/.dotfiles
 
 # Apply Home Manager configuration
 echo "Applying Home Manager configuration..."
-if nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'; then
+if nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#arconescrespoa'; then
     echo "Switch successful"
 else
     echo "Switch failed, retrying after removing temporary git..."
     nix profile remove git
-    nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#andres'
+    nix run 'github:nix-community/home-manager' -- switch --flake '.?submodules=1#arconescrespoa'
 fi
 
 # Remove temporary git
@@ -53,7 +53,7 @@ nix profile remove git
 sudo cp ~/.local/share/xsessions/i3-nix.desktop /usr/share/xsessions/
 
 # change shell to zsh. nix does not allow it....
-echo "/home/andres/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
-echo -e "${YELLOW}⚠️  Run manually:${NC} ${GREEN}chsh -s /home/andres/.nix-profile/bin/zsh${NC}"
+echo "/home/arconescrespoa/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
+echo -e "${YELLOW}⚠️  Run manually:${NC} ${GREEN}chsh -s /home/arconescrespoa/.nix-profile/bin/zsh${NC}"
 
 echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."
