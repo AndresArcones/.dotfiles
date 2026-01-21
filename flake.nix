@@ -16,7 +16,7 @@
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];
       };
-      extraSpecialArgs = { user = "andres"; };
+      extraSpecialArgs = { user = "arconescrespoa"; };
       modules = [ ./home.nix ];
     };
   };
