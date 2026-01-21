@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=i3 (Nix)
-Comment=i3 window manager installed via Nix
-Exec=/home/andres/.nix-profile/bin/i3
-TryExec=/home/andres/.nix-profile/bin/i3
-Type=Application
-DesktopNames=i3
