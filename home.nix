@@ -47,6 +47,7 @@
     wget
     terraform
     docker
+    opencode
 
     # Languages and runtimes
     nodejs

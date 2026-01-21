@@ -122,4 +122,3 @@ clean_scala_deps() {
 }
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-#source ~/.ssh/agent.sh

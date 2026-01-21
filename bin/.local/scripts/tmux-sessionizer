@@ -1,25 +1,34 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
+# Collect all candidate directories
+dirs=$(find ~/ ~/work ~/personal ~/.dotfiles -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
+
+# Collect existing tmux sessions
+sessions=$(tmux list-sessions -F "#{session_name}" 2>/dev/null)
+
+# Combine sessions and directories for fzf selection
+# Existing sessions will appear first
+selection=$(printf "%s\n%s" "$sessions" "$dirs" | fzf --prompt="Select tmux session or folder: ")
+
+# Exit if nothing selected
+[[ -z $selection ]] && exit 0
+
+# Determine if the selection is an existing tmux session
+if tmux has-session -t "$selection" 2>/dev/null; then
+    target_session="$selection"
+    target_dir=$(tmux display-message -p -t "$selection" "#{pane_current_path}" 2>/dev/null || echo "$HOME")
 else
-    selected=$(find ~/ ~/work ~/personal ~/.dotfiles -mindepth 1 -maxdepth 1 -type d | fzf)
+    target_dir="$selection"
+    target_session=$(basename "$selection" | tr . _)
+    # Create session if it doesn't exist
+    if ! tmux has-session -t "$target_session" 2>/dev/null; then
+        tmux new-session -ds "$target_session" -c "$target_dir"
+    fi
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
+# Attach or switch depending on current tmux state
+if [[ -n $TMUX ]]; then
+    tmux switch-client -t "$target_session"
+else
+    tmux attach-session -t "$target_session"
 fi
-
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
-fi
-
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-fi
-
-tmux switch-client -t $selected_name
