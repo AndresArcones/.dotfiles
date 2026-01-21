@@ -115,7 +115,7 @@
       teams = "teams-for-linux";
       icat = "kit +kitten icat";
       kit = "nixgl kitty";
-      hm = "home-manager switch --flake '.?submodules=1#andres'";
+      hm = "home-manager switch --flake '.?submodules=1#${user}'";
       nixgl = "~/.local/bin/nixgl";
     };
     initExtra = ''
