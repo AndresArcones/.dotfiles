@@ -115,7 +115,10 @@
       teams = "teams-for-linux";
       icat = "kit +kitten icat";
       kit = "nixgl kitty";
+      # Update the nix/home-manager to latest. Will only execute what changed since the last time it was run.
       hm = "home-manager switch --flake '.?submodules=1#${user}'";
+      # Backup the conflicting files that are already present on the system and use the ones defined in nix/home-manager
+      hmb = "home-manager switch -b backup --flake '.?submodules=1#${user}'";
       nixgl = "~/.local/bin/nixgl";
     };
     initExtra = ''
