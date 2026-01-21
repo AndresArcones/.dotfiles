@@ -11,7 +11,7 @@
   };
 
   outputs = { nixpkgs, home-manager, nixgl, ... }: {
-    homeConfigurations."andres" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."arconescrespoa" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];
