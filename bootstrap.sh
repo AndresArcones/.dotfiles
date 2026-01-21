@@ -54,6 +54,6 @@ sudo cp ~/.local/share/xsessions/i3-nix.desktop /usr/share/xsessions/
 
 # change shell to zsh. nix does not allow it....
 echo "/home/arconescrespoa/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
-echo -e "${YELLOW}⚠️  Run manually:${NC} ${GREEN}chsh -s /home/arconescrespoa/.nix-profile/bin/zsh${NC}"
+echo -e "${YELLOW}⚠️ Run manually to change defualt shell:${NC} ${GREEN}chsh -s /home/arconescrespoa/.nix-profile/bin/zsh${NC}"
 
 echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."
