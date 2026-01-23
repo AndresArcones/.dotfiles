@@ -11,12 +11,12 @@
   };
 
   outputs = { nixpkgs, home-manager, nixgl, ... }: {
-    homeConfigurations."arconescrespoa" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."andres.arconescrespo" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];
       };
-      extraSpecialArgs = { user = "arconescrespoa"; };
+      extraSpecialArgs = { user = "andres.arconescrespo"; };
       modules = [ ./home.nix ];
     };
   };
