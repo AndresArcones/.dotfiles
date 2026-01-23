@@ -74,7 +74,6 @@
     flameshot
     feh
     xss-lock
-    i3lock
     dex
     bumblebee-status
     dmenu
@@ -168,34 +167,6 @@
     # Scripts
     "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
     "bin/activity.sh".source = ./bin/activity.sh;
-
-    # X11 start (if using startx)
-    ".xinitrc".text = ''
-      exec i3
-    '';
-
-    # Desktop entry for i3 session
-    ".local/share/xsessions/i3-nix.desktop".text = ''
-      [Desktop Entry]
-      Name=i3 (Nix)
-      Comment=Lightweight tiling window manager from Nix
-      Exec=/home/${user}/.xsession
-      TryExec=/home/${user}/.xsession
-      Type=Application
-    '';
-  };
-
-  ###############
-  # XSESSION / I3
-  ###############
-  xsession = {
-    enable = true;
-
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3;
-    };
-  };
 
   ###############
   # USER SERVICES

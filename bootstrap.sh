@@ -49,9 +49,6 @@ fi
 # Remove temporary git
 nix profile remove git
 
-# Copy i3 desktop entry to system-wide location
-sudo cp ~/.local/share/xsessions/i3-nix.desktop /usr/share/xsessions/
-
 # change shell to zsh. nix does not allow it....
 echo "/home/andres.arconescrespo/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
 echo -e "${YELLOW}⚠️ Run manually to change defualt shell:${NC} ${GREEN}chsh -s /home/andres.arconescrespo/.nix-profile/bin/zsh${NC}"
