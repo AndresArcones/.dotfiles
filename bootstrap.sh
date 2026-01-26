@@ -53,4 +53,7 @@ nix profile remove git
 echo "/home/andres.arconescrespo/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
 echo -e "${YELLOW}⚠️ Run manually to change defualt shell:${NC} ${GREEN}chsh -s /home/andres.arconescrespo/.nix-profile/bin/zsh${NC}"
 
+#install sdk man
+curl -s "https://get.sdkman.io" | bash
+
 echo "Setup complete! i3 is ready. You can choose Ubuntu/GNOME or i3 at login."
