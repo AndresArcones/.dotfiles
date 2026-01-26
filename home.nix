@@ -167,10 +167,11 @@
     # Scripts
     "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
     "bin/activity.sh".source = ./bin/activity.sh;
+  };
 
   ###############
   # USER SERVICES
   ###############
   services.network-manager-applet.enable = true;
 
-}
+
