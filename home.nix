@@ -3,7 +3,7 @@
 
 {
   home.username = user;
-  home.homeDirectory = "/home/" + user;
+  home.homeDirectory = "/Users/" + user;
   home.stateVersion = "23.11";
 
   nixpkgs.config.allowUnfree = true;
@@ -21,8 +21,6 @@
     wezterm
 
     # Applications
-    microsoft-edge
-    teams-for-linux
     spotify
     slack
     obsidian
@@ -67,37 +65,7 @@
     cmake
     bazelisk
     sbt
-
-    # i3 dependencies / tools
-    dunst
-    networkmanagerapplet
-    flameshot
-    feh
-    xss-lock
-    dex
-    bumblebee-status
-    dmenu
-    jetbrains-toolbox
-    python311Packages.psutil
-    xclip
-
-    # NixGL
-    nixgl.nixGLIntel # needed for kitty to run in nix
   ];
-
-  ###############
-  # Create global wrappers
-  ###############
-  home.file.".local/bin/nixgl".text = ''
-    #!/usr/bin/env bash
-    exec ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel "$@"
-  '';
-  home.file.".local/bin/nixgl".executable = true;
-  home.file.".local/bin/kit".text = ''
-    #!/usr/bin/env bash
-    exec ~/.local/bin/nixgl kitty "$@"
-  '';
-  home.file.".local/bin/kit".executable = true;
 
   ###############
   # ZSH
@@ -110,16 +78,11 @@
       plugins = [ "git" ];
     };
     shellAliases = {
-      wezterm = "flatpak run org.wezfurlong.wezterm";
-      obsidian = "flatpak run md.obsidian.Obsidian";
-      teams = "teams-for-linux";
-      icat = "kit +kitten icat";
-      kit = "nixgl kitty";
+      icat = "kitty +kitten icat";
       # Update the nix/home-manager to latest. Will only execute what changed since the last time it was run.
       hm = "home-manager switch --flake '.?submodules=1#${user}'";
       # Backup the conflicting files that are already present on the system and use the ones defined in nix/home-manager
       hmb = "home-manager switch -b backup --flake '.?submodules=1#${user}'";
-      nixgl = "~/.local/bin/nixgl";
     };
     initExtra = ''
       # Keybindings
@@ -143,11 +106,8 @@
     '';
     profileExtra = ''
       export PATH=~/.local/share/coursier/bin:$PATH
-      export PATH=~/.local/share/JetBrains/Toolbox/scripts:$PATH
-      export PATH=/opt/pulsesecure/bin:$PATH
       export PATH=$PATH:/usr/local/go/bin
 
-      export TERMINAL=kitty
       export GIT_EDITOR="nvim"
     '';
   };
@@ -160,18 +120,12 @@
     ".config/tmux".source = ./tmux/.config/tmux;
     ".config/kitty".source = ./kitty/.config/kitty;
     ".config/wezterm".source = ./wezterm/.config/wezterm;
-    ".config/i3".source = ./i3/.config/i3;
+    ".config/aerospace".source = ./aerospace/.config/aerospace;
     ".ideavimrc".source = ./ideavimrc/.ideavimrc;
-    ".config/dunst".source = ./dunst/.config/dunst;
 
     # Scripts
     "bin/tmux-sessionizer".source = ./bin/.local/scripts/tmux-sessionizer;
     "bin/activity.sh".source = ./bin/activity.sh;
   };
-
-  ###############
-  # USER SERVICES
-  ###############
-  services.network-manager-applet.enable = true;
 
 }

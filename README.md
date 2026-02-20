@@ -1,10 +1,34 @@
 # How to use
 
+## macOS (AeroSpace)
+
+1. Install Xcode Command Line Tools:
+   ```bash
+   xcode-select --install
+   ```
+2. Install [Nix](https://nixos.org/download/):
+   ```bash
+   sh <(curl -L https://nixos.org/nix/install)
+   ```
+3. Install [AeroSpace](https://github.com/nikitabobko/AeroSpace) (tiling window manager):
+   ```bash
+   brew install --cask nikitabobko/tap/aerospace
+   ```
+4. Run the bootstrap script:
+   ```bash
+   wget -qO - https://raw.githubusercontent.com/AndresArcones/.dotfiles/refs/heads/macos-aerospace/bootstrap.sh | bash
+   ```
+5. Enjoy - all packages installed and dotfiles symlinked
+
+> AeroSpace config is located at `~/.config/aerospace/aerospace.toml`. The default modifier key is `Alt`.
+
+## Linux (i3)
+
 1. Run the bootstrap script:
    ```bash
    wget -qO - https://raw.githubusercontent.com/AndresArcones/.dotfiles/refs/heads/main/bootstrap.sh | bash`
    ```
-3. Enjoy - all packages installed and dotfiles symlinked
+2. Enjoy - all packages installed and dotfiles symlinked
 
 >If error when executing `1.` or you want a clean nix installation:
 
