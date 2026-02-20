@@ -13,3 +13,6 @@
 [submodule "i3/.config/i3"]
 	path = i3/.config/i3
 	url = https://github.com/AndresArcones/i3
+[submodule "aerospace/.config/aerospace"]
+	path = aerospace/.config/aerospace
+	url = https://github.com/AndresArcones/aerospace
